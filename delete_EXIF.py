@@ -1,6 +1,6 @@
 #已经删除了Pillow库中img.info字典的元数据并伪造了Exif数据。
 #可以使用exiftool或类似的库来删除其他潜在的隐私信息。这里没有写。
-#注意是很理想的写法，需要实测一下，看看有没有删除成功。
+#一定一定要测试一下，好像有时候删除不掉。。。
 #pip install pillow
 #pip install piexif
 # -*- coding: utf-8 -*-
