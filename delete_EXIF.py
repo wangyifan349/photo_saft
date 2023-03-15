@@ -1,5 +1,7 @@
 #已经删除了Pillow库中img.info字典的元数据并伪造了Exif数据。
 #可以使用exiftool或类似的库来删除其他潜在的隐私信息。这里没有写。
+#pip install pillow
+#pip install piexif
 import os
 import piexif
 from PIL import Image
