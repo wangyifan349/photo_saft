@@ -12,6 +12,12 @@ def forge_exif_data(image_path):
         os.chmod(image_path, 0o777) # 更改文件权限
         with Image.open(image_path) as img:
             # 删除img.info中的所有元数据
+            if "icc_profile" in img.info:
+                del img.info["icc_profile"]# 删除ICC Profile
+            if "photoshop_metadata" in img.info:
+                del img.info["photoshop_metadata"]# 删除IPTC信息
+            if "xmp_metadata" in img.info:
+                del img.info["xmp_metadata"]# 删除XMP信息
             keys_to_remove = list(img.info.keys())
             for key in keys_to_remove:
                 print(f"正在删除 {key} 元数据...")
