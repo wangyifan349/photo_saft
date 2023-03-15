@@ -2,6 +2,7 @@
 #可以使用exiftool或类似的库来删除其他潜在的隐私信息。这里没有写。
 #pip install pillow
 #pip install piexif
+# -*- coding: utf-8 -*-
 import os
 import piexif
 from PIL import Image
@@ -33,9 +34,9 @@ def forge_exif_data(image_path):
     except Exception as e:
         print(f"处理 {image_path} 时出现了错误: {str(e)}")
 # 示例：批量修改目录下的所有JPEG文件
-image_directory = "images"
+image_directory = r"C:\\Users\Administrator\Documents\测试区域\image"#这里填写真实的文件路径，这是我的测试的部分，你换成python3的，格式部分这是尝试了，自己研究不解释了。
 for filename in os.listdir(image_directory):
-    if filename.lower().endswith(".jpg") or filename.lower().endswith(".jpeg"):
+    if filename.lower().endswith(('.jpg', '.jpeg', '.bmp', '.gif', '.png')):#图片格式很多，需要的自己添加进去。
         image_path = os.path.join(image_directory, filename)
         print(f"正在处理 {image_path}...")
         # 删除元数据并伪造Exif数据，然后覆盖原文件
