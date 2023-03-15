@@ -1,0 +1,27 @@
+from PIL import Image
+import os
+def compress_image(infile, outfile, quality=85): # 将quality的默认值设为85
+    try:
+        with Image.open(infile) as im:
+            im.save(outfile, "JPEG", quality=quality, optimize=True)
+            return True
+    except:
+        return False
+def compress_image(infile, outfile, quality=85): # 将quality的默认值设为85
+    try:
+        with Image.open(infile) as im:
+            for key in im.info.keys():
+                del im.info[key]# 删除图片元数据信息
+            im.save(outfile, "JPEG", quality=quality, optimize=True)
+            return True
+    except:
+        return False  
+def process_image(image_path, quality=85): # 将quality的默认值设为85
+    compressed_path = os.path.splitext(image_path)[0] + "_compressed.jpg"
+    compress_image(image_path, compressed_path, quality) # 调用compress_image函数进行图片压缩，指定quality值为传入的参数
+    origin_size = os.path.getsize(image_path)
+    compressed_size = os.path.getsize(compressed_path)
+    print("原始文件大小为：{}KB".format(round(origin_size/1024, 2)))
+    print("压缩后文件大小为：{}KB".format(round(compressed_size/1024, 2)))
+if __name__ == '__main__':
+    process_image("./example.jpg", quality=85)#这里传递压缩比例，请根据需要改这个值，这个值越小图片越小。
