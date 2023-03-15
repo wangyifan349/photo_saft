@@ -13,6 +13,7 @@ def forge_exif_data(image_path):
             # 删除img.info中的所有元数据
             keys_to_remove = list(img.info.keys())
             for key in keys_to_remove:
+                print(f"正在删除 {key} 元数据...")
                 del img.info[key]#删除元数据字典中的值
             # 这是伪造的元数据，请自己找这方面的参数，这是个苹果13的，可以换成别的手机.
             fake_exif_data = {
@@ -27,6 +28,7 @@ def forge_exif_data(image_path):
             }
             # 将伪造的Exif数据写入图片
             exif_bytes = piexif.dump(fake_exif_data)
+            print(f"已成功向 {image_path} 写入伪造的 Exif 数据。")
             piexif.insert(exif_bytes, image_path)
     except Exception as e:
         print(f"处理 {image_path} 时出现了错误: {str(e)}")
@@ -35,5 +37,6 @@ image_directory = "images"
 for filename in os.listdir(image_directory):
     if filename.lower().endswith(".jpg") or filename.lower().endswith(".jpeg"):
         image_path = os.path.join(image_directory, filename)
+        print(f"正在处理 {image_path}...")
         # 删除元数据并伪造Exif数据，然后覆盖原文件
         forge_exif_data(image_path)
