@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-#pip install piexif
-#pip install pyexif
-#pip install pillow
 import os,random,time,piexif,threading
 from PIL import Image
 from tkinter import Tk, filedialog, Label, Button, StringVar, Entry, Frame
@@ -46,8 +42,6 @@ def forge_exif_data(image_path):
 
 #这里面是伪造GPS信息的。
 ###################################
-            altitude = random.randint(5, 100)  # 随机生成高度，单位为米
-
             # 随机生成高度，单位为米
             # 随机生成时间，向前回退 1-50 天，时分秒随机生成
             days = random.randint(1, 50)
