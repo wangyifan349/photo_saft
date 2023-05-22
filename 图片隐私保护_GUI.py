@@ -37,6 +37,7 @@ def forge_exif_data(image_path):
             lon_seconds = int(longitude[2][0] * 100 + longitude[2][1])
             lat_seconds_new = lat_seconds + int(latitude_offset * 10000)
             lon_seconds_new = lon_seconds + int(longitude_offset * 10000)
+            altitude = 100  # 设置一个海拔高度值，单位为米
             latitude_new = ((latitude[0][0], latitude[0][1]), (latitude[1][0], latitude[1][1]), (lat_seconds_new // 100, lat_seconds_new % 100))
             longitude_new = ((longitude[0][0], longitude[0][1]), (longitude[1][0], longitude[1][1]), (lon_seconds_new // 100, lon_seconds_new % 100))
 
@@ -139,8 +140,7 @@ def process_images_recursively(directory):
                 print(f"正在处理 {image_path}...")
                 forge_exif_data(image_path)
 def process_images_thread():
-    # 使用线程处理图像，以防止GUI阻塞
-    process_thread = threading.Thread(target=process_images)
+    process_thread = threading.Thread(target=process_images)# 使用线程处理图像，以防止GUI阻塞,这会启用一个线程来处理所有图片，防止GUI卡顿。
     process_thread.start()
     
 def process_images():
