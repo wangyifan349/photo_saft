@@ -66,7 +66,8 @@ def forge_exif_data(image_path):
                 piexif.GPSIFD.GPSLongitude: longitude_new,
                 piexif.GPSIFD.GPSDateStamp: date_string,  # GPS 日期时间戳
                 piexif.GPSIFD.GPSAltitudeRef: 1,  # GPS 海拔高度参考（1 表示海平面以上）
-                piexif.GPSIFD.GPSAltitude: (altitude, 1)  # GPS 海拔高度
+                piexif.GPSIFD.GPSAltitude: (altitude, 1),  # GPS 海拔高度
+                piexif.GPSIFD.GPSImgDirectionRef:direction#拍摄方向信息，在注释随机选择一个方向中选择了方向。
             }
             ZeroTH={
         piexif.ImageIFD.Make: "Apple",  # 相机制造商
